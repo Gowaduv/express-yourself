@@ -34,6 +34,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+//Editing User info per askMPA.com
+// Super Duper PUT stuff
+app.put('/updateinfo/:id',users.updateinfo(db));
+
+//this is from Buecheler original
 app.use('/', routes);
 app.use('/users', users);
 
@@ -67,6 +72,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
 
 
 module.exports = app;

@@ -31,25 +31,49 @@ block content
                     th UserName
                     th Email
                     th Delete?
+                    th Edit
                 tbody
         
     // end userList
     
     // ADD USER
-    h2 Add User
-    #addUser
-      fieldset
-        input#inputUserName(type='text', placeholder='Username')
-        input#inputUserEmail(type='text', placeholder='Email')
-        br
-        input#inputUserFullname(type='text', placeholder='Full Name')
-        input#inputUserAge(type='text', placeholder='Age')
-        br
-        input#inputUserLocation(type='text', placeholder='Location')
-        input#inputUserGender(type='text', placeholder='gender')
-        br
-        button#btnAddUser Add User
-                  
-          // end ADD USER
+    div
+    #addUserChunk
+      h2 Add User
+      #addUser
+        fieldset
+          input#inputUserName(type='text', placeholder='Username')
+          input#inputUserEmail(type='text', placeholder='Email')
+          br
+          input#inputUserFullname(type='text', placeholder='Full Name')
+          input#inputUserAge(type='text', placeholder='Age')
+          br
+          input#inputUserLocation(type='text', placeholder='Location')
+          input#inputUserGender(type='text', placeholder='gender')
+          br
+          button#btnAddUser Add User
+
+    // end ADD USER
+    
+    //UPDATE INFO
+  div
+  #updateInfoChunk
+      h2 Update Info
+      #updateInfo
+        fieldset
+          input#updateUserName(type='text', placeholder='Username')
+          input#updateUserEmail(type='text', placeholder='Email')
+          br
+          input#updateUserFullname(type='text', placeholder='Full Name')
+          input#updateUserAge(type='text', placeholder='Age')
+          br
+          input#updateUserLocation(type='text', placeholder='Location')
+          input#updateUserGender(type='text', placeholder='Gender')
+          br
+          button#btnUpdateInfo Update User
+          button#btnCancelUpdateInfo Cancel
+        
+    // /UPDATE INFO
+    
           
   // end Wrapper

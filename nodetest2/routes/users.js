@@ -20,6 +20,18 @@ router.post("/adduser", function(req, res){
     );
   });
 });
+
+//Edit info per askMPA.com
+router.updateinfo = function(db) {
+    return function(req, res) {
+        var userToUpdate = req.params.id;
+        var doc = {$set: req.body};
+        db.collection('userlist').updateById(userToUpdate, doc, function(err, result) {
+            res.send((result == 1) ? {msg: ''} : {msg: 'Error: ' + err});
+        });
+    }
+};
+
 // Delete to deleteuser
 router.delete("/deleteuser/:id", function(req, res){
   var db = req.db;
@@ -29,5 +41,6 @@ router.delete("/deleteuser/:id", function(req, res){
     res.send((err === null) ? { msg : "" } : { msg: "error: " + err });
   });
 });
+
 
 module.exports = router;
