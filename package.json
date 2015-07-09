@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.1",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "morgan": "~1.2.2",
+    "method-override" : "~2.1.2",
+    "body-parser" : "~1.13.2"
   }
 }

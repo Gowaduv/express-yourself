@@ -46,14 +46,14 @@ li {
   letter-spacing: .1em;
   margin-bottom: 1em;
 }
-.navbar ul {
+ul {
   display: inline;
   list-style: none;
   text-align: center;
   float: left;
   clear:both;
 }
-.navbar li {
+li {
   display: inline;
   float: left;
   margin: 1em;

@@ -1,12 +1,18 @@
-doctype html
-html
-
-  link(rel='stylesheet', href='../css/base.css')
-  include ./head.jade
-  body
-    include ./nav.jade
-    h1 Learning How To Use Jade
-    h2 Sports Blog
-    p This is how people envision it feeling when the Cubs eventually win a World Series. Celebrations all over the place. Tears, Joy, and a city of broken sports dreams, coming together for a truly beautiful moment
-    iframe(width="560" height="315" src="https://www.youtube.com/embed/0_qNFjJn3No" frameborder="0" allowfullscreen)
-    p#footer we did some stuff in the footer so we don't get fined. &copy 2015
+include layout
+block content
+  h1 Fixin Mongo
+  p "welcome to #{title}."  
+  
+  // Wrapper
+  #wrapper
+    
+    // ~~~ User List ~~~
+    h2 User List
+    ul
+      li:"User name"
+      li:"email"
+      li:"delete?"
+        
+    // end user List
+    
+// wrapper

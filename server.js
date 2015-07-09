@@ -11,20 +11,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 //index get requests
-app.get('/', function(req, res){
+app.get('*', function(req, res){
   res.render('index');
 });
-app.get('/about', function(req, res){
-  res.render('about');
-});
-app.get('/footer', function(req, res){
-  res.render('footer');
-});
-app.get('/head', function(req, res){
-  res.render('head');
-});
-app.get('/nav', function(req, res){
-  res.render('nav');
+app.get('/', function(req, res){
+  res.render('layout');
 });
 app.get('/users', function(req, res){
   res.render('users');
