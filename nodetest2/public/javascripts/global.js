@@ -28,11 +28,7 @@ $(document).ready(function() {
 
 
 // Functions =============================================================
-// Toggle Displaying Add and Update Chunks
-function toggleAddUpdateChunks() {
-  $('#addUserChunk').toggle();
-  $('#updateInfoChunk').toggle();
-}
+
 // Fill table with data
 function populateTable() {
 
@@ -137,6 +133,11 @@ function addUser(event) {
 
 //EDIT User
 // per askMPA.com
+// Toggle Displaying Add and Update Chunks
+function toggleAddUpdateChunks() {
+  $('#addUserChunk').toggle();
+  $('#updateInfoChunk').toggle();
+}
 // inject User info into the Update chunk
 function injectIntoUpdateChunk(event) {
 
@@ -180,8 +181,8 @@ function updateInfo(event) {
 
     $.ajax({
       type: 'PUT',
-      url: '/updateinfo/' + _id,
-      data: updatedFields
+      data: updatedFields,
+      url: '/users/updateuser/'+_id
     }).done(function(response) {
       if (response.msg === '') {
         toggleAddUpdateChunks();

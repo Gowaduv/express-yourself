@@ -21,16 +21,25 @@ router.post("/adduser", function(req, res){
   });
 });
 
-//Edit info per askMPA.com
-router.updateinfo = function(db) {
-    return function(req, res) {
-        var userToUpdate = req.params.id;
-        var doc = {$set: req.body};
-        db.collection('userlist').updateById(userToUpdate, doc, function(err, result) {
-            res.send((result == 1) ? {msg: ''} : {msg: 'Error: ' + err});
-        });
-    }
-};
+// This is an alternate way of using the PUT route if you do not want to include update.js
+// router.put("/updateuser/:id", function(req, res) {
+//   var db = req.db;
+//   var userToUpdate = req.params.id;
+//   var doc = {
+//     $set: req.body
+//   };
+//   var collection = db.get('userlist');
+//
+//   collection.update(
+//     { "_id": userToUpdate},
+//      doc , function(err, result) {
+//     res.send((result == 1) ? {
+//       msg: ''
+//     } : {
+//       msg: 'Error: ' + err
+//     });
+//   });
+// });
 
 // Delete to deleteuser
 router.delete("/deleteuser/:id", function(req, res){

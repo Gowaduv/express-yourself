@@ -11,7 +11,8 @@ var db = monk('localhost:27017/nodetest2');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var update = require('./routes/update');
+console.log(update);
 var app = express();
 
 // view engine setup
@@ -34,13 +35,14 @@ app.use(function(req, res, next) {
   next();
 });
 
-//Editing User info per askMPA.com
-// Super Duper PUT stuff
-app.put('/updateinfo/:id',users.updateinfo(db));
 
 //this is from Buecheler original
 app.use('/', routes);
 app.use('/users', users);
+
+//Editing User info per askMPA.com
+// Super Duper PUT stuff
+app.put('/users/updateuser/:id',update.updateinfo(db));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
