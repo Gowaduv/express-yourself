@@ -8,25 +8,25 @@ var minifyCss = require('gulp-minify-css');
 var minifyHTML = require('gulp-minify-html');
 
 gulp.task('sass', function () {
-  gulp.src('./app/sass/**/*.scss')
+  gulp.src('./app/sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('./public/css'));
+    .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('./app/sass/**/*.scss', ['sass']);
+  gulp.watch('./app/sass/**/*.sass', ['sass']);
 });
 
 gulp.task('webpackdev', function() {
-  return gulp.src('app/js/**/*.js')
+  return gulp.src('./app/js/**/*.js')
     .pipe(webpack({
       output: {
         filename: 'bundle.js'
       }
     }))
     .pipe(uglify())
-    .pipe(gulp.dest('public/'));
+    .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('copy', function() {
@@ -35,8 +35,8 @@ gulp.task('copy', function() {
     spare:true
   };
 
-  return gulp.src('app/**/*.html')
-    .pipe(gulp.dest('public/'))
+  return gulp.src('./app/**/*.html')
+    .pipe(gulp.dest('./public/'))
     .pipe(minifyHTML(opts))
     .pipe(gulp.dest('./public/'));
 });
