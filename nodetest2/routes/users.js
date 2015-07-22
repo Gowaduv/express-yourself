@@ -1,55 +1,56 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-// Get User List
-router.get("/userlist", function(req, res) {
-  var db = req.db;
-  var collection = db.get("userlist");
-  collection.find({},{}, function(e, docs){
-    res.json(docs);
+var bodyParser = require('body-parser');
+var User    = require('../models/usersSchema.js');
+
+module.exports = function(router) {
+  router.use(bodyParser.json());
+  router.get('/users', function(req, res) {
+    console.log('Index router');
+    User.find({}, function(err, data) {
+      if (err) {
+        console.log(err);
+      }
+      return res.json(data);
+    });
   });
-});
 
-// POST to addUser
-router.post("/adduser", function(req, res){
-  var db = req.db;
-  var collection = db.get("userlist");
-  collection.insert(req.body, function(err, result){
-    res.send(
-      (err === null) ? { msg: "" } : { msg: err }
-    );
+  router.post('/users', function(req, res) {
+    console.log('You hit the post')
+    var newUser = new User(req.body);
+    console.log(req.body);
+    newUser.save({}, function(err, data) {
+      if (err){
+        errorResponse(err, res);
+        return;
+      }
+      res.json(data);
+    });
   });
-});
 
-// This is an alternate way of using the PUT route if you do not want to include update.js
-// router.put("/updateuser/:id", function(req, res) {
-//   var db = req.db;
-//   var userToUpdate = req.params.id;
-//   var doc = {
-//     $set: req.body
-//   };
-//   var collection = db.get('userlist');
-//
-//   collection.update(
-//     { "_id": userToUpdate},
-//      doc , function(err, result) {
-//     res.send((result == 1) ? {
-//       msg: ''
-//     } : {
-//       msg: 'Error: ' + err
-//     });
-//   });
-// });
+  router.put('/users/:id', function (req, res) {
+    console.log('Hit update route');
+    var updatedUser = req.body;
+    delete updatedUser._id;
 
-// Delete to deleteuser
-router.delete("/deleteuser/:id", function(req, res){
-  var db = req.db;
-  var collection = db.get("userlist");
-  var userToDelete = req.params.id;
-  collection.remove({ "_id" : userToDelete }, function(err){
-    res.send((err === null) ? { msg : "" } : { msg: "error: " + err });
+    User.update({'_id': req.params.id}, updatedUser, function (err, data) {
+      console.log(req.body);
+      if (err) {
+        errorResponse(err, res);
+        return;
+      }
+      res.json({msg: 'updated successfully'});
+    });
   });
-});
 
-
-module.exports = router;
+  router.delete('/users/:id', function(req, res) {
+    console.log('You hit delete');
+    User.remove({'_id': req.params.id}, function(err, data) {
+      if (err) {
+        errorResponse(err, res);
+        return;
+      }
+      res.json({msg: "Don't let the door hit you on the way out."})
+    });
+  });
+};
