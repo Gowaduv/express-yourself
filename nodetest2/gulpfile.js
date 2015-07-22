@@ -32,7 +32,7 @@ gulp.task('webpackdev', function() {
 gulp.task('copy', function() {
   var opts = {
     conditionals: true,
-    spare:true
+    spare: true
   };
 
   return gulp.src('./app/**/*.html')
