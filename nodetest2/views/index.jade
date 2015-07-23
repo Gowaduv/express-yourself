@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  
+
   //wrapper
   #wrapper
     // User Info
@@ -22,7 +22,7 @@ block content
         strong Location:
         | <span id="userInfoLocation"></span>
     // end User Info
-    
+
     // User List
     h2 User List
     #userList
@@ -33,9 +33,9 @@ block content
                     th Delete?
                     th Edit
                 tbody
-        
+
     // end userList
-    
+
     // ADD USER
     div
     #addUserChunk
@@ -54,7 +54,7 @@ block content
           button#btnAddUser Add User
 
     // end ADD USER
-    
+
     //UPDATE INFO
   div
   #updateInfoChunk
@@ -72,8 +72,8 @@ block content
           br
           button#btnUpdateInfo Update User
           button#btnCancelUpdateInfo Cancel
-        
+
     // /UPDATE INFO
-    
-          
+
+
   // end Wrapper
