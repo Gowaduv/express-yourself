@@ -6,7 +6,7 @@
   </head>
   <body>
 
-    <main data-ng-controller="userController">
+    <main data-ng-controller="userController" data-ng-init="getUsers()">
 
       <ul id="addUserChunk">
         <li>
@@ -82,7 +82,7 @@
               </li>
               <li>
                 <button data-ng-click="cancel(user)">Cancel</button>
-                <button data-ng-click="update(user)">Save</button>
+                <button data-ng-click="update(user._id, user)">Save</button>
               </li>
             </ul>
           </div>

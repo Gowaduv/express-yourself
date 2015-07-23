@@ -1,30 +1,30 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('userController', ['$scope', '$http', function($scope, $http) {
+  app.controller('userController', ['$scope', 'resource', function($scope, resource) {
 
-    var getAll = function(){
-      $http.get('/users').success(function(response){
+    var User = resource('users');
+
+    $scope.getUsers = function(){
+      User.getAll(function(response){
         console.log(response);
         $scope.users = response;
       });
     };
 
-    getAll();
-
     $scope.submitForm = function(user) {
       console.log(user);
-      $http.post('/users', user).success(function(response) {
-        getAll();
+      User.submitForm(user, function(response) {
+        $scope.getUsers();
       });
     };
 
     $scope.destroy = function(id) {
       console.log(id);
-      $http.delete('/users/' + id).success(function(response) {
-        getAll();
+      User.destroy(id, function(response) {
+        $scope.getUsers();
       });
-    }
+    };
 
     $scope.edit = function(user) {
       user.editing = true;
@@ -32,18 +32,15 @@ module.exports = function(app) {
     };
 
     $scope.cancel = function(user) {
-      getAll();
+      $scope.getUsers();
     };
 
-    $scope.update = function(user) {
-      console.log(user);
-      $http.put('/users/' + user._id, user)
-        .error(function (error) {
-          console.log(error);
-          $scope.errors.push({msg: 'could not update book'});
-        });
-      user.editing = false;
-      getAll();
+    $scope.update = function(id, user) {
+      console.log(id);
+      User.update(id, user, function(response) {
+        user.editing = false;
+        $scope.getUsers();
+      });
     };
 
   }]);

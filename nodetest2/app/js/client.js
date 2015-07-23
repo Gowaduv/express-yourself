@@ -1,7 +1,10 @@
-'use strict';
+ 'use strict';
 
 require('angular/angular');
 
 var userApp = angular.module('userApp', []);
 
-require("./users/usersController")(userApp);
+require('./services/resourceServices.js')(userApp);
+
+require('./users/usersController.js')(userApp);
+
