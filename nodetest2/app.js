@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var express = require('express');
 var app = express();
 var usersRouter = express.Router();
-
+app.set('view engine', 'jade');
+app.engine('html', require('ejs').renderFile);
 mongoose.connect('mongodb://localhost/userDb');
 
 app.use(express.static(__dirname + '/public'));

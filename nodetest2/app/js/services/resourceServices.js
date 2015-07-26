@@ -9,6 +9,7 @@ module.exports = function(app) {
     return function(resourceName) {
       return {
         getAll: function(callback) {
+          console.log("resourceServices getAll");
           $http({
             method: 'GET',
             url: '/' + resourceName

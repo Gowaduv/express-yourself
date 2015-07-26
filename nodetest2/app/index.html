@@ -1,97 +1,74 @@
 <!doctype html>
 <html class="no-js" lang="EN" data-ng-app="userApp">
-  <head>
-    <title>User Management</title>
-    <link rel="stylesheet" href="css/index.css">
-  </head>
-  <body>
 
-    <main data-ng-controller="userController" data-ng-init="getUsers()">
+<head>
+  <title>User Management</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
 
-      <ul id="addUserChunk">
-        <li>
-          <h2 id="addUser">Add User</h2>
-        </li>
+<body>
+  <main data-ng-controller="userController" data-ng-init="getUsers()">
+    <a href="#/demographics">Demographics</a>
+    <div data-ng-view></div>
+
+    <h2>User List</h2>
+    <ul>
+      <li data-ng-repeat="user in users">
+        <!-- <div data-ng-if="!user.editing"> -->
+        <h3>{{user.name}}</h3>
         <ul>
-          <form data-ng-submit="submitForm(user)">
-            <fieldset>
-              <li>
-                <input id="inputUserName" type='text', placeholder='Username' data-ng-model="user.userName"/>
-              </li>
-              <li>
-                <input id="inputUserEmail" type='text', placeholder='Email' data-ng-model="user.params.userEmail"/>
-              </li>
-              <li>
-                <input id="inputUserFullname" type='text', placeholder='Full Name' data-ng-model="user.params.userFullName"/>
-              </li>
-              <li>
-                <input id="inputUserAge" type='text', placeholder='Age' data-ng-model="user.params.userAge"/>
-              </li>
-              <li>
-                <input id="inputUserLocation" type='text', placeholder='Location' data-ng-model="user.params.userLocation"/>
-              </li>
-              <li>
-                <input id="inputUserGender" type='text', placeholder='Gender' data-ng-model="user.params.userGender"/>
-              </li>
-              <li>
-                <button id="btnAddUser" type="submit">Add User</button>
-              </li>
-            </fieldset>
-          </form>
+          <li>Username: {{user.userName}}</li>
+          <li>Email: {{user.params.userEmail}}</li>
+          <li>Full Name: {{user.params.userFullName}}</li>
+          <li>Age: {{user.params.userAge}}</li>
+          <li>Location: {{user.params.userLocation}}</li>
+          <li>Gender: {{user.params.userGender}}</li>
+          <li>
+            <button data-ng-click="edit(user)">Edit</button>
+            <button data-ng-click="destroy(user._id)">Delete</button>
+          </li>
         </ul>
-      </ul>
-
-
-
-
-      <h2>User List</h2>
+        <!-- </div> -->
+      </li>
+    </ul>
+    <ul id="addUserChunk">
+      <li>
+        <h2 id="addUser">Add User</h2>
+      </li>
       <ul>
-        <li data-ng-repeat="user in users">
-          <div data-ng-if="!user.editing">
-            <h3>{{user.name}}</h3>
-            <ul>
-              <li>Username: {{user.userName}}</li>
-              <li>Email: {{user.params.userEmail}}</li>
-              <li>Full Name: {{user.params.userFullName}}</li>
-              <li>Age: {{user.params.userAge}}</li>
-              <li>Location: {{user.params.userLocation}}</li>
-              <li>Gender: {{user.params.userGender}}</li>
-              <li>
-                <button data-ng-click="edit(user)">Edit</button>
-                <button data-ng-click="destroy(user._id)">Delete</button>
-              </li>
-            </ul>
-          </div>
-          <div data-ng-if="user.editing">
-            <h3><input id="updateUserName" type='text', placeholder='Username' data-ng-model="user.userName"/></h3>
-            <ul>
-              <li>
-                <input id="updateUserEmail" type='text', placeholder='Email' data-ng-model="user.params.userEmail"/>
-              </li>
-              <li>
-                <input id="updateUserFullname" type='text', placeholder='Full Name' data-ng-model="user.params.userFullName"/>
-              </li>
-              <li>
-                <input id="updateUserAge" type='text', placeholder='Age' data-ng-model="user.params.userAge"/>
-              </li>
-              <li>
-                <input id="updateUserLocation" type='text', placeholder='Location' data-ng-model="user.params.userLocation"/>
-              </li>
-              <li>
-                <input id="updateUserGender" type='text', placeholder='Gender' data-ng-model="user.params.userGender"/>
-              </li>
-              <li>
-                <button data-ng-click="cancel(user)">Cancel</button>
-                <button data-ng-click="update(user._id, user)">Save</button>
-              </li>
-            </ul>
-          </div>
+
+      </ul>
+    </ul>
+    <div data-ng-if="user.editing">
+      <h3>
+        <input id="updateUserName" type='text' , placeholder='Username' data-ng-model="user.userName" />
+      </h3>
+      <ul>
+        <li>
+          <input id="updateUserEmail" type='text' , placeholder='Email' data-ng-model="user.params.userEmail" />
+        </li>
+        <li>
+          <input id="updateUserFullname" type='text' , placeholder='Full Name' data-ng-model="user.params.userFullName" />
+        </li>
+        <li>
+          <input id="updateUserAge" type='text' , placeholder='Age' data-ng-model="user.params.userAge" />
+        </li>
+        <li>
+          <input id="updateUserLocation" type='text' , placeholder='Location' data-ng-model="user.params.userLocation" />
+        </li>
+        <li>
+          <input id="updateUserGender" type='text' , placeholder='Gender' data-ng-model="user.params.userGender" />
+        </li>
+        <li>
+          <button data-ng-click="cancel(user)">Cancel</button>
+          <button data-ng-click="update(user._id, user)">Save</button>
         </li>
       </ul>
+    </div>
+    </li>
+    </ul>
+  </main>
+  <script src="js/bundle.js"></script>
+</body>
 
-    </main>
-
-    <script src="js/bundle.js"></script>
-  </body>
 </html>
-
