@@ -21,7 +21,8 @@ module.exports = function(router) {
     console.log(req.body);
     newUser.save({}, function(err, data) {
       if (err){
-        console.log(err);
+        errorResponse(err, res);
+        return;
       }
       res.json(data);
     });
